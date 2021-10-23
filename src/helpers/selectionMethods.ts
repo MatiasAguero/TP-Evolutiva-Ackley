@@ -9,6 +9,8 @@ const DEFAULT_OPTIONS = {
 
 export const selectByElitism = (parents: Habitant[], childrens: Habitant[], options = DEFAULT_OPTIONS) => {
   const { elitismPercentage } = options
+  const populationSize = parents.length
+
   const allHabitants = [...parents, ...childrens].sort((a, b) => a.fitness - b.fitness)
 
   const elitismCeil = Math.floor(parents.length * (elitismPercentage / 100))
@@ -18,11 +20,12 @@ export const selectByElitism = (parents: Habitant[], childrens: Habitant[], opti
   const restOfHabitantsForNextGenerations = shuffle(allHabitants.slice(elitismCeil)).slice(0, elitismRest)
 
   const nextGeneration = [...elitismHabitants, ...restOfHabitantsForNextGenerations]
-  return new HabitantsCluster(0, nextGeneration)
+  return new HabitantsCluster(0, populationSize, nextGeneration)
 }
 
 export const selectByTournament = (parents: Habitant[], childrens: Habitant[], options = DEFAULT_OPTIONS) => {
   const { tournamentComparisonCount, tournamentPercentage } = options
+  const populationSize = parents.length
   
   const tournamentCeil = Math.floor(parents.length * (tournamentPercentage / 100))
   const tournamentRest = parents.length - tournamentCeil
@@ -43,5 +46,5 @@ export const selectByTournament = (parents: Habitant[], childrens: Habitant[], o
   const restOfHabitantsForNextGenerations = shuffle(allHabitantsWithScore.map(elem => elem.habitant).slice(tournamentCeil)).slice(0, tournamentRest)
 
   const nextGeneration = [...habitantsWinnersOfTheTournament, ...restOfHabitantsForNextGenerations]
-  return new HabitantsCluster(0, nextGeneration)
+  return new HabitantsCluster(0, populationSize, nextGeneration)
 }

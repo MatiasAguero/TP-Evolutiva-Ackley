@@ -4,18 +4,28 @@ import { ELITISM, TOURNAMENT } from "../const";
 
 export class HabitantsCluster {
   listOfHabitants: Habitant[]
+  populationSize: number
 
-  constructor(dimension: number, initializedHabitants: Habitant[] = []) {
+  constructor(dimension: number, populationSize: number, initializedHabitants: Habitant[] = []) {
+    this.populationSize = populationSize
 
     if (initializedHabitants?.length) {
       this.listOfHabitants = initializedHabitants
     } else {
       let listOfHabitants: Habitant[] = []
-      for (let i = 0; i < dimension; i++) {
+      for (let i = 0; i < populationSize; i++) {
         listOfHabitants.push(new Habitant(dimension))
       }
       this.listOfHabitants = listOfHabitants
     }
+  }
+
+  getHabitants() {
+    return [...this.listOfHabitants]
+  }
+
+  getPopulationSize() {
+    return this.populationSize
   }
 
   getChildrens() {
@@ -38,7 +48,7 @@ export class HabitantsCluster {
         return selectedNextGenerationByTournament
 
       default:
-        return new HabitantsCluster(0)
+        return new HabitantsCluster(0, this.populationSize)
     }
   }
 }
