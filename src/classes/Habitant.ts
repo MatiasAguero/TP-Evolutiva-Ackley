@@ -1,4 +1,4 @@
-import { getAckleyFit, randomFromInterval } from '../helpers'
+import { getAckleyFit, randomIntFromInterval, randomFloatFromInterval } from '../helpers'
 
 export class Habitant {
   values: number[]
@@ -9,8 +9,8 @@ export class Habitant {
     let values: number[] = []
     let deviations: number[] = []
     for (let i = 0; i < dimension; i++) {
-      values.push(Math.floor(randomFromInterval(-1000, 1000)))
-      deviations.push(randomFromInterval(1, 5))
+      values.push(Math.floor(randomIntFromInterval(-1000, 1000)))
+      deviations.push(randomFloatFromInterval(1, 5))
     }
 
     this.values = values

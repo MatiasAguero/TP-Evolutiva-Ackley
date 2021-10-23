@@ -1,9 +1,10 @@
 import { Habitant, HabitantsCluster } from "../classes"
-import { shuffle } from "."
+import { shuffle, getMultipleRandomIntFromIntervalWithoutDuplicates, getTournamentScore } from "."
 
 const DEFAULT_OPTIONS = {
   elitismPercentage: 10,
-  tournamentComparison: 5,
+  tournamentPercentage: 10,
+  tournamentComparisonCount: 5,
 }
 
 export const selectByElitism = (parents: Habitant[], childrens: Habitant[], options = DEFAULT_OPTIONS) => {
@@ -21,5 +22,26 @@ export const selectByElitism = (parents: Habitant[], childrens: Habitant[], opti
 }
 
 export const selectByTournament = (parents: Habitant[], childrens: Habitant[], options = DEFAULT_OPTIONS) => {
-  // TODO: tournament by points
+  const { tournamentComparisonCount, tournamentPercentage } = options
+  
+  const tournamentCeil = Math.floor(parents.length * (tournamentPercentage / 100))
+  const tournamentRest = parents.length - tournamentCeil
+
+  const allHabitants = [...parents, ...childrens]
+
+  const allHabitantsWithScore = allHabitants.map(habitant => {
+    const indexes = getMultipleRandomIntFromIntervalWithoutDuplicates(0, allHabitants.length, tournamentComparisonCount)
+    let score = 0
+    for (const index of indexes) {
+      score = getTournamentScore(habitant, allHabitants[index])
+    }
+
+    return { habitant, score }
+  })
+
+  const habitantsWinnersOfTheTournament = allHabitantsWithScore.sort((a, b) => b.score - a.score).slice(0, tournamentCeil).map(elem => elem.habitant)
+  const restOfHabitantsForNextGenerations = shuffle(allHabitantsWithScore.map(elem => elem.habitant).slice(tournamentCeil)).slice(0, tournamentRest)
+
+  const nextGeneration = [...habitantsWinnersOfTheTournament, ...restOfHabitantsForNextGenerations]
+  return new HabitantsCluster(0, nextGeneration)
 }
