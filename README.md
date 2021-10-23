@@ -2,6 +2,7 @@
 
 ## // TODO:
 
+### - [ ] Generar la UI nuevamente
 ### - [ ] Conectar los inputs con la ejecucion
 ### - [ ] Logica de ejecucion (migracion de python a js)
 ### - [ ] Loading screen/icon/spinner mientras se ejecutan las runs/generaciones
