@@ -2,8 +2,24 @@ import { Box, Container, Grid, Input, Slider, Switch, Typography } from "@mui/ma
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 
 interface IFormContentProps {
-    
+    dispatch: any;
+    population: number;
+    initializationType: boolean;
+    geneCrossing: boolean;
+    mutation: number;
+    survivalSelection: number;
+    fitnessFunction: number;
+    cutCondition: number;
 }
+
+const POPULATION_SLIDER_ID = "populationSlider";
+const POPULATION_INPUT_ID = "populationInput";
+const INITIALIZATION_SWITCH_ID = "initializationSwitch";
+const CROSS_SWITCH_ID = "crossSwitch";
+const MUTATION_INPUT_ID = "mutationInput";
+const SURVIVAL_SEL_INPUT_ID = "survivalSelectionInput";
+const FITNESS_FUNC_INPUT_ID = "fitnessFunctionInput";
+const CUT_COND_INPUT_ID = "cutConditionInput";
 
 export function FormContent(props: IFormContentProps) {
 
@@ -13,6 +29,18 @@ export function FormContent(props: IFormContentProps) {
     *   Se genera un objeto conteniendo todas las configuraciones y valores necesarios para
     *   la ejecucion del algoritmo
     */
+
+    const handleSliderChange = (event: Event, value: number | number[]) => {
+
+    }
+
+    const handleInputChange = (event: any) => {
+
+    }
+
+    const handleSwitchChange = () => {
+
+    }
 
     return (
     <Container className="form-container" maxWidth="md">
@@ -27,17 +55,20 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item xs>
                         <Slider
-                            value={typeof value === 'number' ? value : 0}
+                            value={props.population}
+                            id={POPULATION_SLIDER_ID}
+                            name={POPULATION_SLIDER_ID}
                             onChange={handleSliderChange}
                             aria-labelledby="input-slider"
                         />
                     </Grid>
                     <Grid item>
                         <Input
-                            value={value}
+                            value={props.population}
+                            id={POPULATION_INPUT_ID}
+                            name={POPULATION_INPUT_ID}
                             size="small"
                             onChange={handleInputChange}
-                            onBlur={handleBlur}
                             inputProps={{
                             step: 10,
                             min: 0,
@@ -53,13 +84,23 @@ export function FormContent(props: IFormContentProps) {
                 <Typography id="init-switch-label" gutterBottom>
                     Inicializacion
                 </Typography>
-                <Switch {...label} />
+                <Switch 
+                    id={INITIALIZATION_SWITCH_ID}
+                    name={INITIALIZATION_SWITCH_ID}
+                    checked={props.initializationType} 
+                    onChange={handleSwitchChange}
+                />
             </Grid>
             <Grid item xs={4}>
                 <Typography id="cross-switch-label" gutterBottom>
                     Cruce
                 </Typography>
-                <Switch {...label} />
+                <Switch
+                    id={CROSS_SWITCH_ID}
+                    name={CROSS_SWITCH_ID}
+                    checked={props.initializationType} 
+                    onChange={handleSwitchChange}
+                />
             </Grid>
             <Grid item xs={8}>
                 <Typography id="mutation-input-label" gutterBottom>
@@ -71,16 +112,12 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item>
                         <Input
-                            value={value}
-                            size="small"
+                            id={MUTATION_INPUT_ID}
+                            name={MUTATION_INPUT_ID}
+                            value={props.mutation}
                             onChange={handleInputChange}
-                            onBlur={handleBlur}
                             inputProps={{
-                            step: 10,
-                            min: 0,
-                            max: 500,
-                            type: 'number',
-                            'aria-labelledby': 'input-slider',
+                                type: 'number'
                             }}
                         />
                     </Grid>
@@ -96,16 +133,12 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item>
                         <Input
-                            value={value}
-                            size="small"
+                            value={props.survivalSelection}
+                            id={SURVIVAL_SEL_INPUT_ID}
+                            name={SURVIVAL_SEL_INPUT_ID}
                             onChange={handleInputChange}
-                            onBlur={handleBlur}
                             inputProps={{
-                            step: 10,
-                            min: 0,
-                            max: 500,
-                            type: 'number',
-                            'aria-labelledby': 'input-slider',
+                                type: 'number'
                             }}
                         />
                     </Grid>
@@ -121,16 +154,12 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item>
                         <Input
-                            value={value}
-                            size="small"
+                            value={props.fitnessFunction}
+                            id={FITNESS_FUNC_INPUT_ID}
+                            name={FITNESS_FUNC_INPUT_ID}
                             onChange={handleInputChange}
-                            onBlur={handleBlur}
                             inputProps={{
-                            step: 10,
-                            min: 0,
-                            max: 500,
-                            type: 'number',
-                            'aria-labelledby': 'input-slider',
+                                type: 'number',
                             }}
                         />
                     </Grid>
@@ -146,16 +175,12 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item>
                         <Input
-                            value={value}
-                            size="small"
+                            value={props.cutCondition}
+                            id={CUT_COND_INPUT_ID}
+                            name={CUT_COND_INPUT_ID}
                             onChange={handleInputChange}
-                            onBlur={handleBlur}
                             inputProps={{
-                            step: 10,
-                            min: 0,
-                            max: 500,
-                            type: 'number',
-                            'aria-labelledby': 'input-slider',
+                            type: 'number'
                             }}
                         />
                     </Grid>
