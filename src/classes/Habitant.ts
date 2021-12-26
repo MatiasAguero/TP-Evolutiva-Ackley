@@ -18,6 +18,10 @@ export class Habitant {
     this.fitness = getAckleyFit(values)
   }
 
+  getFitness() {
+    return this.fitness
+  }
+
   getChildren() {
     const ALPHA = 0.2
     const generalDeviator = Math.random()

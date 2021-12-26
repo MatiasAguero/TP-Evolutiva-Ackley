@@ -36,6 +36,31 @@ export class HabitantsCluster {
     return childrens
   }
 
+  getStatistics() {
+    let statistics: {
+      best: number,
+      average: number,
+      worst: number
+    } = {
+      best: 0,
+      average: 0,
+      worst: 0
+    }
+
+    for (const habitant of this.listOfHabitants) {
+      if (statistics.best < habitant.getFitness()) {
+        statistics.best = habitant.getFitness()
+      }
+      if (statistics.worst > habitant.getFitness()) {
+        statistics.worst = habitant.getFitness()
+      }
+      statistics.average += habitant.getFitness()
+    }
+    statistics.average /= this.listOfHabitants.length
+
+    return statistics
+  }
+
   getNextGeneration(method: string): HabitantsCluster {
     const childrens = this.getChildrens()
     switch(method) {

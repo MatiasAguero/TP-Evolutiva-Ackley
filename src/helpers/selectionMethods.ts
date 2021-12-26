@@ -14,7 +14,7 @@ export const selectByElitism = (parents: Habitant[], childrens: Habitant[], opti
   const allHabitants = [...parents, ...childrens].sort((a, b) => a.fitness - b.fitness)
 
   const elitismCeil = Math.floor(parents.length * (elitismPercentage / 100))
-  const elitismRest = parent.length - elitismCeil
+  const elitismRest = parents.length - elitismCeil
 
   const elitismHabitants = allHabitants.slice(0, elitismCeil)
   const restOfHabitantsForNextGenerations = shuffle(allHabitants.slice(elitismCeil)).slice(0, elitismRest)
