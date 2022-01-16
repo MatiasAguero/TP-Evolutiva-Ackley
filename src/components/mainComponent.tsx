@@ -7,6 +7,16 @@ import { mainReducer } from './mainComponentReducer';
 
 const initialState = {
     appState: AppState.APP_STATE_FORM_VALUE,
+    algorithmParams: {
+        population: 100,
+        initializationType: true,
+        geneCrossing: true,
+        mutation: 0.5,
+        survivalSelection: 50,
+        fitnessFunction: 0.8,
+        cutCondition: 100000
+    },
+    resultData: {}
 }
 
 export function MainComponent() {
@@ -33,7 +43,12 @@ export function MainComponent() {
                     <Header />
                 </Box>
                 <Box component="div">
-                    <ContentContainer dispatch={dispatch} appState={state.appState} />
+                    <ContentContainer 
+                        dispatch={dispatch} 
+                        appState={state.appState} 
+                        algorithmParams={state.algorithmParams} 
+                        resultData={state.resultData}
+                    />
                 </Box>
                 <Box component="div">
                     <Footer />

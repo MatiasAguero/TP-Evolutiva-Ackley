@@ -2,14 +2,8 @@ import { Box, Container, Grid, Input, Slider, Switch, Typography } from "@mui/ma
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 
 interface IFormContentProps {
-    dispatch: any;
-    population: number;
-    initializationType: boolean;
-    geneCrossing: boolean;
-    mutation: number;
-    survivalSelection: number;
-    fitnessFunction: number;
-    cutCondition: number;
+    dispatch: React.Dispatch<Action>;
+    algorithmParams: AlgorithmParams;
 }
 
 const POPULATION_SLIDER_ID = "populationSlider";
@@ -55,7 +49,7 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item xs>
                         <Slider
-                            value={props.population}
+                            value={props.algorithmParams.population}
                             id={POPULATION_SLIDER_ID}
                             name={POPULATION_SLIDER_ID}
                             onChange={handleSliderChange}
@@ -64,7 +58,7 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item>
                         <Input
-                            value={props.population}
+                            value={props.algorithmParams.population}
                             id={POPULATION_INPUT_ID}
                             name={POPULATION_INPUT_ID}
                             size="small"
@@ -87,7 +81,7 @@ export function FormContent(props: IFormContentProps) {
                 <Switch 
                     id={INITIALIZATION_SWITCH_ID}
                     name={INITIALIZATION_SWITCH_ID}
-                    checked={props.initializationType} 
+                    checked={props.algorithmParams.initializationType} 
                     onChange={handleSwitchChange}
                 />
             </Grid>
@@ -98,7 +92,7 @@ export function FormContent(props: IFormContentProps) {
                 <Switch
                     id={CROSS_SWITCH_ID}
                     name={CROSS_SWITCH_ID}
-                    checked={props.initializationType} 
+                    checked={props.algorithmParams.initializationType} 
                     onChange={handleSwitchChange}
                 />
             </Grid>
@@ -114,7 +108,7 @@ export function FormContent(props: IFormContentProps) {
                         <Input
                             id={MUTATION_INPUT_ID}
                             name={MUTATION_INPUT_ID}
-                            value={props.mutation}
+                            value={props.algorithmParams.mutation}
                             onChange={handleInputChange}
                             inputProps={{
                                 type: 'number'
@@ -133,7 +127,7 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item>
                         <Input
-                            value={props.survivalSelection}
+                            value={props.algorithmParams.survivalSelection}
                             id={SURVIVAL_SEL_INPUT_ID}
                             name={SURVIVAL_SEL_INPUT_ID}
                             onChange={handleInputChange}
@@ -154,7 +148,7 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item>
                         <Input
-                            value={props.fitnessFunction}
+                            value={props.algorithmParams.fitnessFunction}
                             id={FITNESS_FUNC_INPUT_ID}
                             name={FITNESS_FUNC_INPUT_ID}
                             onChange={handleInputChange}
@@ -175,7 +169,7 @@ export function FormContent(props: IFormContentProps) {
                     </Grid>
                     <Grid item>
                         <Input
-                            value={props.cutCondition}
+                            value={props.algorithmParams.cutCondition}
                             id={CUT_COND_INPUT_ID}
                             name={CUT_COND_INPUT_ID}
                             onChange={handleInputChange}

@@ -5,8 +5,24 @@ declare enum AppState {
     APP_STATE_DATA_VALUE = 'dataView'
 }
 
+interface AlgorithmParams {
+    population: number,
+    initializationType: boolean,
+    geneCrossing: boolean,
+    mutation: number,
+    survivalSelection: number,
+    fitnessFunction: number,
+    cutCondition: number
+}
+
+interface ResultData {
+    // Veremos que onda
+}
+
 interface MainState {
-    appState: AppState
+    appState: AppState,
+    algorithmParams: AlgorithmParams,
+    resultData: ResultData
 }
 
 interface Action {

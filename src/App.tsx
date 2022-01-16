@@ -16,7 +16,7 @@ const runnerParams = {
 
 export function App() {
 
-  const runner = new Runner(runnerParams)
+  //const runner = new Runner(runnerParams)
   // const res = runner.run()
   // console.log({ res })
 
