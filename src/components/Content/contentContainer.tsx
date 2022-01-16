@@ -1,12 +1,9 @@
 import { Container } from "@mui/material";
 
 interface IContentContainerProps {
+  dispatch: React.Dispatch<Action>;
   appState: string;
 }
-
-const appStateFormValue = 'variablesForm';
-const appStateLoadingValue = 'algorithmLoading';
-const appStateDataViewValue = 'dataView';
 
 export function ContentContainer(props: IContentContainerProps) {
 
@@ -18,13 +15,13 @@ export function ContentContainer(props: IContentContainerProps) {
 
     return (
       <Container className="content-container" maxWidth="lg">
-        {props.appState == appStateFormValue
+        {props.appState == AppState.APP_STATE_FORM_VALUE
           //LLamar a FormContent
         }
-        {props.appState == appStateLoadingValue
+        {props.appState == AppState.APP_STATE_LOADING_VALUE
           //LLamar a LoadingContent
         }
-        {props.appState == appStateDataViewValue
+        {props.appState == AppState.APP_STATE_DATA_VALUE
           //LLamar a DataView
         }
       </Container>
