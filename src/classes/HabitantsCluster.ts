@@ -2,6 +2,9 @@ import { Habitant } from ".";
 import { selectByElitism, selectByTournament } from "../helpers";
 import { ELITISM, TOURNAMENT } from "../const";
 
+const BEST_DISCERNIBLE = 40
+const WORST_DISCERNIBLE = -40
+
 export class HabitantsCluster {
   listOfHabitants: Habitant[]
   populationSize: number
@@ -42,16 +45,16 @@ export class HabitantsCluster {
       average: number,
       worst: number
     } = {
-      best: 0,
+      best: BEST_DISCERNIBLE,
       average: 0,
-      worst: 0
+      worst: WORST_DISCERNIBLE
     }
 
     for (const habitant of this.listOfHabitants) {
-      if (statistics.best < habitant.getFitness()) {
+      if (habitant.getFitness() < statistics.best) {
         statistics.best = habitant.getFitness()
       }
-      if (statistics.worst > habitant.getFitness()) {
+      if (habitant.getFitness() > statistics.worst) {
         statistics.worst = habitant.getFitness()
       }
       statistics.average += habitant.getFitness()

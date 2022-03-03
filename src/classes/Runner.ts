@@ -48,7 +48,6 @@ export class Runner {
       listOfBest.push(best)
       listOfWorst.push(worst)
       listOfAverage.push(average)
-      console.log(`Generation ${i + 1}`)
     }
 
     return {

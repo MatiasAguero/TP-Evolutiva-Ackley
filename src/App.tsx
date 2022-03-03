@@ -16,7 +16,15 @@ const runnerParams = {
 
 export function App() {
 
-  const runner = new Runner(runnerParams)
+  const myWorker = new Worker(
+    new URL('./workers/main.worker.ts', import.meta.url)
+  );
+  myWorker.onmessage = ($event) => {
+    if ($event && $event.data) {
+      console.log($event.data)
+    }
+  }
+  myWorker.postMessage({ runnerParams })
   // const res = runner.run()
   // console.log({ res })
 
