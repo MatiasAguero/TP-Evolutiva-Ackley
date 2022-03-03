@@ -3,14 +3,14 @@ import { GlobalStyle } from './styles/GlobalStyle'
 import { Greetings } from './components/Greetings'
 
 import { Runner } from './classes'
-import { ELITISM } from './const'
+import { ELITISM, TOURNAMENT } from './const'
 
 const runnerParams = {
   dimension: 1,
-  numberOfGenerations: 100000,
+  numberOfGenerations: 10000,
   populationSize: 100,
   method: ELITISM,
-  elitismPercentage: 10,
+  elitismPercentage: 5,
   tournamentPercentage: 10,
 }
 

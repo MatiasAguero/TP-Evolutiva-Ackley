@@ -1,4 +1,7 @@
-import { getAckleyFit, randomIntFromInterval, randomFloatFromInterval } from '../helpers'
+import { getAckleyFit, randomFloatFromInterval } from '../helpers'
+
+const MIN_VALUE = -32768
+const MAX_VALUE = 32768
 
 export class Habitant {
   values: number[]
@@ -9,7 +12,7 @@ export class Habitant {
     let values: number[] = []
     let deviations: number[] = []
     for (let i = 0; i < dimension; i++) {
-      values.push(Math.floor(randomIntFromInterval(-1000, 1000)))
+      values.push(randomFloatFromInterval(MIN_VALUE, MAX_VALUE))
       deviations.push(randomFloatFromInterval(1, 5))
     }
 
