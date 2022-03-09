@@ -4,6 +4,7 @@ import { Greetings } from './components/Greetings'
 
 import { Runner } from './classes'
 import { ELITISM, TOURNAMENT } from './const'
+import { FormAckley } from './components/FormAckley'
 
 const runnerParams = {
   dimension: 1,
@@ -31,7 +32,7 @@ export function App() {
   return (
     <>
       <GlobalStyle />
-      <Greetings />
+      <FormAckley />
     </>
   )
 }
