@@ -1,5 +1,6 @@
 import { Box, Container, Grid, Input, Slider, Switch, Typography } from "@mui/material";
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import { Action, AlgorithmParams } from "../../../types/interface";
 
 interface IFormContentProps {
     dispatch: React.Dispatch<Action>;

@@ -1,29 +1,35 @@
 import { GlobalStyle } from './styles/GlobalStyle'
 
-import { MainComponent } from './components/mainComponent'
-
-import { Runner } from './classes'
-import { ELITISM } from './const'
+import { ELITISM, TOURNAMENT } from './const'
+import { FormAckley } from './components/FormAckley'
 
 const runnerParams = {
   dimension: 1,
-  numberOfGenerations: 100000,
+  numberOfGenerations: 10000,
   populationSize: 100,
   method: ELITISM,
-  elitismPercentage: 10,
+  elitismPercentage: 5,
   tournamentPercentage: 10,
 }
 
 export function App() {
 
-  //const runner = new Runner(runnerParams)
+  const myWorker = new Worker(
+    new URL('./workers/main.worker.ts', import.meta.url)
+  );
+  myWorker.onmessage = ($event) => {
+    if ($event && $event.data) {
+      console.log($event.data)
+    }
+  }
+  myWorker.postMessage({ runnerParams })
   // const res = runner.run()
   // console.log({ res })
 
   return (
     <>
       <GlobalStyle />
-      <MainComponent />
+      <FormAckley />
     </>
   )
 }

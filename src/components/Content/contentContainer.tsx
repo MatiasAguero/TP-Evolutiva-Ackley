@@ -1,4 +1,5 @@
 import { Container } from "@mui/material";
+import { Action, AlgorithmParams, ResultData, AppState } from "../../types/interface";
 import { FormContent } from "./FormContent/formContentComponent";
 
 interface IContentContainerProps {
