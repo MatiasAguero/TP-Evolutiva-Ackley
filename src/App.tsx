@@ -2,6 +2,7 @@ import { GlobalStyle } from './styles/GlobalStyle'
 
 import { ELITISM, TOURNAMENT } from './const'
 import { FormAckley } from './components/FormAckley'
+import { MainComponent } from './components/mainComponent';
 
 const runnerParams = {
   dimension: 1,
@@ -29,7 +30,7 @@ export function App() {
   return (
     <>
       <GlobalStyle />
-      <FormAckley />
+      <MainComponent />
     </>
   )
 }

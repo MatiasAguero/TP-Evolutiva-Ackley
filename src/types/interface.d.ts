@@ -1,4 +1,7 @@
 //
+declare const SURVIVAL_SELECTION_TOURNAMENT = 'tournament';
+declare const SURVIVAL_SELECTION_ELITISM = 'elitism';
+
 export enum AppState {
     APP_STATE_FORM_VALUE = 'variablesForm',
     APP_STATE_LOADING_VALUE = 'algorithmLoading',
@@ -6,13 +9,12 @@ export enum AppState {
 }
 
 interface AlgorithmParams {
+    runQuantity: number,
+    dimensions: number,   
     population: number,
-    initializationType: boolean,
-    geneCrossing: boolean,
-    mutation: number,
-    survivalSelection: number,
-    fitnessFunction: number,
-    cutCondition: number
+    survivalSelection: string,
+    survivalSelectionBias: number,
+    iterations: number
 }
 
 interface ResultData {
