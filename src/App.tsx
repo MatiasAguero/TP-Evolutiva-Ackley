@@ -9,13 +9,14 @@ const runnerParams = {
   dimension: 1,
   numberOfGenerations: 10000,
   populationSize: 100,
-  method: ELITISM,
+  method: TOURNAMENT,
   elitismPercentage: 5,
   tournamentPercentage: 10,
 }
 
 export function App() {
 
+  /*
   const myWorker = new Worker(
     new URL('./workers/main.worker.ts', import.meta.url)
   );
@@ -25,8 +26,9 @@ export function App() {
     }
   }
   myWorker.postMessage({ runnerParams })
-  // const res = runner.run()
-  // console.log({ res })
+  const runner = new Runner(runnerParams)
+  const res = runner.run()
+  */
 
   return (
     <>

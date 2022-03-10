@@ -33,10 +33,12 @@ export const selectByTournament = (parents: Habitant[], childrens: Habitant[], o
   const allHabitants = [...parents, ...childrens]
 
   const allHabitantsWithScore = allHabitants.map(habitant => {
-    const indexes = getMultipleRandomIntFromIntervalWithoutDuplicates(0, allHabitants.length, tournamentComparisonCount)
+    const indexes = getMultipleRandomIntFromIntervalWithoutDuplicates(0, allHabitants.length - 1, tournamentComparisonCount)
     let score = 0
+
     for (const index of indexes) {
-      score = getTournamentScore(habitant, allHabitants[index])
+      const indexedElem = allHabitants[index]
+      score = getTournamentScore(habitant, indexedElem)
     }
 
     return { habitant, score }
