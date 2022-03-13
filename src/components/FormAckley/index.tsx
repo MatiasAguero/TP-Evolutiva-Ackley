@@ -1,4 +1,4 @@
-import { Action, AlgorithmParams, SURVIVAL_SELECTION_TOURNAMENT, SURVIVAL_SELECTION_ELITISM } from '../../types/interface';
+import { Action, AlgorithmParams, SURVIVAL_SELECTION_TOURNAMENT, SURVIVAL_SELECTION_ELITISM } from '../../types/interface.d';
 import { ACTION_DIMENSIONS_SLIDER_CHANGE, ACTION_ITERATIONS_CHANGE, ACTION_POPULATION_CHANGE, ACTION_RUNS_SLIDER_CHANGE, ACTION_SURVIVAL_SELECTION_BIAS_CHANGE, ACTION_SURVIVAL_SELECTION_METHOD_CHANGE } from '../mainComponentActions';
 import {
   Container,
@@ -8,6 +8,7 @@ import {
   InputString,
   Label,
   MethodLabel,
+  Button,
 } from './styles'
 
 interface IFormAckleyProps {
@@ -18,22 +19,41 @@ interface IFormAckleyProps {
 export const FormAckley = (props: IFormAckleyProps) => {
 
   const _onRunSliderChange = (ev: React.SyntheticEvent<HTMLInputElement>) => {
-    props.dispatch({payload: ev.currentTarget.value, type: ACTION_RUNS_SLIDER_CHANGE});
+    props.dispatch({payload: parseInt(ev.currentTarget.value), type: ACTION_RUNS_SLIDER_CHANGE});
   }
   const _onDimensionSliderChange = (ev: React.SyntheticEvent<HTMLInputElement>) => {
-    props.dispatch({payload: ev.currentTarget.value, type: ACTION_DIMENSIONS_SLIDER_CHANGE});
+    props.dispatch({payload: parseInt(ev.currentTarget.value), type: ACTION_DIMENSIONS_SLIDER_CHANGE});
   }
   const _onPopulationSliderChange = (ev: React.SyntheticEvent<HTMLInputElement>) => {
-    props.dispatch({payload: ev.currentTarget.value, type: ACTION_POPULATION_CHANGE});
+    props.dispatch({payload: parseInt(ev.currentTarget.value), type: ACTION_POPULATION_CHANGE});
   }
   const _onSurvivalMethodChange = (ev: React.SyntheticEvent<HTMLInputElement>) => {
     props.dispatch({payload: ev.currentTarget.value, type: ACTION_SURVIVAL_SELECTION_METHOD_CHANGE});
   }
   const _onSurvivalMethodBiasChange = (ev: React.SyntheticEvent<HTMLInputElement>) => {
-    props.dispatch({payload: ev.currentTarget.value, type: ACTION_SURVIVAL_SELECTION_BIAS_CHANGE});
+    props.dispatch({payload: parseInt(ev.currentTarget.value), type: ACTION_SURVIVAL_SELECTION_BIAS_CHANGE});
   }
   const _onIterationsChange = (ev: React.SyntheticEvent<HTMLInputElement>) => {
-    props.dispatch({payload: ev.currentTarget.value, type: ACTION_ITERATIONS_CHANGE});
+    props.dispatch({payload: parseInt(ev.currentTarget.value), type: ACTION_ITERATIONS_CHANGE});
+  }
+  const _onSubmitClick = () => {
+    const runnerParams = {
+      dimension: props.algorithmParams.dimensions,
+      numberOfGenerations: props.algorithmParams.iterations,
+      populationSize: props.algorithmParams.population,
+      method: props.algorithmParams.survivalSelection,
+      elitismPercentage: props.algorithmParams.survivalSelectionBias,
+      tournamentPercentage: props.algorithmParams.survivalSelectionBias,
+    }
+    const myWorker = new Worker(
+      new URL('../../workers/main.worker.ts', import.meta.url)
+    );
+    myWorker.onmessage = ($event) => {
+      if ($event && $event.data) {
+        console.log($event.data)
+      }
+    }
+    myWorker.postMessage({ runnerParams })
   }
 
   return (
@@ -90,7 +110,7 @@ export const FormAckley = (props: IFormAckleyProps) => {
         {props.algorithmParams.survivalSelection === SURVIVAL_SELECTION_ELITISM && (
           <InputWrapper>
             <Label> Porcentage de elitismo </Label>
-            <InputSlider type='range' defaultValue={10} min={0} max={100} value={props.algorithmParams.survivalSelectionBias} onChange={_onSurvivalMethodBiasChange}/>
+            <InputSlider type='range' min={0} max={100} value={props.algorithmParams.survivalSelectionBias} onChange={_onSurvivalMethodBiasChange}/>
           </InputWrapper>
         )}
 
@@ -98,6 +118,8 @@ export const FormAckley = (props: IFormAckleyProps) => {
           <Label> Numero de iteraciones </Label>
           <InputString type='number' value={props.algorithmParams.iterations} onChange={_onIterationsChange}/>
         </InputWrapper>
+
+      <Button  onClick={_onSubmitClick}> Submit </Button>
       </Form>
     </Container>
   )

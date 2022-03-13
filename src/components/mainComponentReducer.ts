@@ -1,3 +1,4 @@
+import { MainState, Action, AppState } from "../types/interface.d";
 import * as Actions from "./mainComponentActions"
 
 export function mainReducer(state: MainState, action: Action): MainState {

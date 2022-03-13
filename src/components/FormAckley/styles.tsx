@@ -41,3 +41,12 @@ export const MethodLabel = styled.label`
   gap: 14px;
   width: 100%;
 `
+
+export const Button = styled.button`
+  background-color: LightSkyBlue;
+  color: white;
+  width: 75px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 10px;
+`

@@ -5,7 +5,7 @@ import { Footer } from './Footer/footerComponent';
 import { Header } from './Header/headerComponent';
 import { mainReducer } from './mainComponentReducer';
 import { FormAckley } from "./FormAckley";
-import { MainState, AppState, SURVIVAL_SELECTION_TOURNAMENT } from "../types/interface";
+import { MainState, AppState, SURVIVAL_SELECTION_TOURNAMENT } from "../types/interface.d";
 
 const initialState: MainState = {
     appState: AppState.APP_STATE_FORM_VALUE,
@@ -27,6 +27,7 @@ export function MainComponent() {
     return (
         <div id="MainComponent" className="screen root">
             <FormAckley dispatch={dispatch} algorithmParams={state.algorithmParams} /> 
+            
         </div>
     );
 }

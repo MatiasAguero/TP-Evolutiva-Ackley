@@ -1,6 +1,6 @@
 //
-declare const SURVIVAL_SELECTION_TOURNAMENT = 'tournament';
-declare const SURVIVAL_SELECTION_ELITISM = 'elitism';
+export const SURVIVAL_SELECTION_TOURNAMENT = 'tournament';
+export const SURVIVAL_SELECTION_ELITISM = 'elitism';
 
 export enum AppState {
     APP_STATE_FORM_VALUE = 'variablesForm',
@@ -8,7 +8,7 @@ export enum AppState {
     APP_STATE_DATA_VALUE = 'dataView'
 }
 
-interface AlgorithmParams {
+export interface AlgorithmParams {
     runQuantity: number,
     dimensions: number,   
     population: number,
@@ -17,17 +17,17 @@ interface AlgorithmParams {
     iterations: number
 }
 
-interface ResultData {
+export interface ResultData {
     // Veremos que onda
 }
 
-interface MainState {
+export interface MainState {
     appState: AppState,
     algorithmParams: AlgorithmParams,
     resultData: ResultData
 }
 
-interface Action {
+export interface Action {
     payload: any,
     type: string
 }
