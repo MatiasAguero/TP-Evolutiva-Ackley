@@ -1,7 +1,7 @@
 import { HabitantsCluster } from "."
 
 interface IRunner {
-  dimension: number
+  dimensions: number
   numberOfGenerations: number
   populationSize: number
   method: string
@@ -10,15 +10,15 @@ interface IRunner {
 }
 
 export class Runner {
-  dimension: number
+  dimensions: number
   numberOfGenerations: number
   populationSize: number
   method: string
   elitismPercentage: number
   tournamentPercentage: number
 
-  constructor({ dimension, numberOfGenerations, populationSize, method, elitismPercentage, tournamentPercentage }: IRunner) {
-    this.dimension = dimension
+  constructor({ dimensions, numberOfGenerations, populationSize, method, elitismPercentage, tournamentPercentage }: IRunner) {
+    this.dimensions = dimensions
     this.numberOfGenerations = numberOfGenerations
     this.populationSize = populationSize
     this.method = method
