@@ -50,14 +50,17 @@ export class HabitantsCluster {
       worst: WORST_DISCERNIBLE
     }
 
+
     for (const habitant of this.listOfHabitants) {
-      if (habitant.getFitness() < statistics.best) {
-        statistics.best = habitant.getFitness()
+      const currentFitness = habitant.getFitness()
+
+      if (currentFitness < statistics.best) {
+        statistics.best = currentFitness
       }
-      if (habitant.getFitness() > statistics.worst) {
-        statistics.worst = habitant.getFitness()
+      if (currentFitness > statistics.worst) {
+        statistics.worst = currentFitness
       }
-      statistics.average += habitant.getFitness()
+      statistics.average += currentFitness
     }
     statistics.average /= this.listOfHabitants.length
 

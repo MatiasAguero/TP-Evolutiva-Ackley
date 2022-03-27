@@ -40,7 +40,7 @@ export class Runner {
     let listOfAverage = [firstStatistics.average]
 
 
-    for (let i = 0; i < numberOfGenerations; i++) {
+    for (let i = 1; i < numberOfGenerations; i++) {
       population = population.getNextGeneration(method)
 
       const { best, worst, average } = population.getStatistics()
