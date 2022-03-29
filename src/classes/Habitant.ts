@@ -1,7 +1,7 @@
 import { getAckleyFit, randomFloatFromInterval } from '../helpers'
 
-const MIN_VALUE = -1000
-const MAX_VALUE = 1000
+const MIN_VALUE = -32768
+const MAX_VALUE = 32768
 
 const MIN_DEVIATION = 1
 const MAX_DEVIATION = 5

@@ -7,9 +7,13 @@ import {
   Legend,
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
-import faker from 'faker';
-
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
+
+interface IMultipleScatterChart {
+  best: number[],
+  worst: number[],
+  average: number[],
+}
 
 const options = {
   animation: false,
@@ -26,7 +30,7 @@ const options = {
   }
 };
 
-export const MultipleScatterChart = ({ best, average, worst }) => {
+export const MultipleScatterChart = ({ best, average, worst }: IMultipleScatterChart) => {
   if (!best || !best.length) return null
   if (!average || !average.length) return null
   if (!worst || !best.length) return null
@@ -62,7 +66,7 @@ export const MultipleScatterChart = ({ best, average, worst }) => {
 
   return (
     <Scatter
-      style={{backgroundColor: 'white',maxWidth:'600px', maxHeight:'400px'}}
+      style={{ backgroundColor: 'white', maxWidth:'600px', maxHeight:'400px' }}
       options={options}
       data={data}
     />

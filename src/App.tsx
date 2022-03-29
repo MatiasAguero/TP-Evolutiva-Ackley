@@ -6,10 +6,11 @@ import { ScatterChart } from './components/ScatterChart'
 import { useEffect, useState } from 'react'
 import { MultipleScatterChart } from './components/MultipleScatterChart'
 import { ChartsManager } from './components/ChartsManager'
+import { useAckley } from './hooks'
 
 const runnerParams = {
-  dimensions: 1,
-  numberOfGenerations: 100,
+  dimensions: 2,
+  numberOfGenerations: 200000,
   populationSize: 200,
   method: ELITISM,
   elitismPercentage: 10,

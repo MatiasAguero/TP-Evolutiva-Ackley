@@ -27,11 +27,11 @@ export class Runner {
   }
 
   run() {
-    const { dimension, numberOfGenerations, populationSize, method, elitismPercentage, tournamentPercentage } = this
+    const { dimensions, numberOfGenerations, populationSize, method, elitismPercentage, tournamentPercentage } = this
 
     if (numberOfGenerations < 1) return { best: null, worst: null, average: null }
 
-    let population = new HabitantsCluster(dimension, populationSize)
+    let population = new HabitantsCluster(dimensions, populationSize)
 
     const firstStatistics = population.getStatistics()
 
