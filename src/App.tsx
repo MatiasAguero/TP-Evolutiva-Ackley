@@ -9,12 +9,12 @@ import { ChartsManager } from './components/ChartsManager'
 import { useAckley } from './hooks'
 
 const runnerParams = {
-  dimensions: 2,
-  numberOfGenerations: 10000,
-  populationSize: 200,
+  dimensions: 1,
+  numberOfGenerations: 100000,
+  populationSize: 100,
   method: ELITISM,
   elitismPercentage: 40,
-  tournamentPercentage: 10,
+  tournamentPercentage: 50,
 }
 
 export function App() {
