@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-export function useAckley ({ runnerParams }) {
+export function useAckley ({ active, runnerParams }) {
   const [runResult, setRunResult] = useState({
     best: null,
     worst: null,
@@ -23,9 +23,5 @@ export function useAckley ({ runnerParams }) {
     myWorker.postMessage({ runnerParams })
   }, [runnerParams])
 
-  return {
-    best: runResult.best,
-    worst: runResult.worst,
-    average: runResult.average,
-  }
+  return [runResult.best, runResult.worst, runResult.average]
 }

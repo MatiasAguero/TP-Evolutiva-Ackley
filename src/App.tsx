@@ -10,10 +10,10 @@ import { useAckley } from './hooks'
 
 const runnerParams = {
   dimensions: 2,
-  numberOfGenerations: 200000,
+  numberOfGenerations: 10000,
   populationSize: 200,
   method: ELITISM,
-  elitismPercentage: 10,
+  elitismPercentage: 40,
   tournamentPercentage: 10,
 }
 
@@ -21,7 +21,7 @@ export function App() {
   return (
     <>
       <GlobalStyle />
-      <ChartsManager params={runnerParams} />
+      <ChartsManager runs={1} params={runnerParams} />
       {/*
       <ScatterChart values={best} color='green' title='Best fitness' id='best' />
       <ScatterChart values={average} color='yellow' title='Average fitness' id='average' />

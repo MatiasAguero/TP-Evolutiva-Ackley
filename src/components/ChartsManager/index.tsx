@@ -1,5 +1,6 @@
 import { useAckley, useNormalizer } from '../../hooks'
 import { MultipleScatterChart } from '../MultipleScatterChart'
+import { ScatterChart } from '../ScatterChart'
 
 type RunnerParams = {
   dimensions: number,
@@ -10,32 +11,35 @@ type RunnerParams = {
   tournamentPercentage: number,
 }
 interface IChartManager {
-  id?: number,
+  runs?: number,
   params: RunnerParams,
 }
 
-export const ChartsManager = ({ id, params }: IChartManager) => {
-  const { best, worst, average } = useAckley({ runnerParams: params })
-  const [ normalizedBest, normalizedWorst, normalizedAverage ] = useNormalizer({ best, worst, average })
+export const ChartsManager = ({ runs = 1, params }: IChartManager) => {
+  const [best1, worst1, average1] = useAckley({ active: true, runnerParams: params })
+  const [best2, worst2, average2] = useAckley({ active: runs >= 2, runnerParams: params })
+  const [best3, worst3, average3] = useAckley({ active: runs >= 3, runnerParams: params })
+  const [best4, worst4, average4] = useAckley({ active: runs >= 4, runnerParams: params })
+  const [best5, worst5, average5] = useAckley({ active: runs >= 5, runnerParams: params })
 
-  console.log({ best })
-  console.log({ worst })
-  console.log({ average })
-  console.log({ normalizedBest })
-  console.log({ normalizedWorst })
-  console.log({ normalizedAverage })
   return (
     <div>
       <MultipleScatterChart
-        best={best}
-        worst={worst}
-        average={average}
+        best={best1}
+        worst={worst1}
+        average={average1}
+        id='Run 1'
       />
-      <MultipleScatterChart
-        best={normalizedBest}
-        worst={normalizedWorst}
-        average={normalizedAverage}
+      {
+        runs >= 2 && (
+          <MultipleScatterChart
+            best={best2}
+            worst={worst2}
+            average={average2}
+            id='Run 2'
       />
+        )
+      }
     </div>
   )
 }

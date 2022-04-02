@@ -1,74 +1,88 @@
 import {
   Chart as ChartJS,
+  CategoryScale,
+  BarElement,
   LinearScale,
   PointElement,
   LineElement,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Scatter } from 'react-chartjs-2';
-ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
+import { LineChart } from '../LineChart';
+import { ScatterChart } from '../ScatterChart';
+ChartJS.register(CategoryScale, BarElement, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 interface IMultipleScatterChart {
   best: number[],
   worst: number[],
   average: number[],
+  id: string,
 }
 
-const options = {
-  animation: false,
-  bezierCurve : false,
-  plugins: {
-    tooltip: {
-      enabled: false
-    },
-  },
-  scales: {
-    x: {
-      beginAtZero: true,
-    },
-  }
-};
-
-export const MultipleScatterChart = ({ best, average, worst }: IMultipleScatterChart) => {
+export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScatterChart) => {
   if (!best || !best.length) return null
   if (!average || !average.length) return null
   if (!worst || !best.length) return null
 
-  const mappedBest = best.map((elem, index) => {
-    return { x: index, y: elem }
-  })
-  const mappedAverage = average.map((elem, index) => {
-    return { x: index, y: elem }
-  })
-  const mappedWorst = worst.map((elem, index) => {
-    return { x: index, y: elem }
-  })
-
+  /*
   const data = {
     datasets: [{
       label: 'BEST',
       data: mappedBest,
+      tension: 0.3,
       backgroundColor: 'green'
     },
     {
       label: 'AVERAGE',
       data: mappedAverage,
+      tension: 0.3,
       backgroundColor: 'yellow'
     },
     {
       label: 'WORST',
       data: mappedWorst,
+      tension: 0.3,
       backgroundColor: 'rgb(255, 99, 132)'
-    },
-  ],
+    }],
   }
+  */
+
 
   return (
-    <Scatter
-      style={{ backgroundColor: 'white', maxWidth:'600px', maxHeight:'400px' }}
-      options={options}
-      data={data}
-    />
+    <>
+      
+      <LineChart
+        values={best}
+        color={'#77dd77'}
+        title={`Best run: ${id}`}
+      />
+      <LineChart
+        values={worst}
+        color={'#ff6385'}
+        title={`Worst run: ${id}`}
+      />
+      <LineChart
+        values={average}
+        color={'#fdfd96'}
+        title={`Average run: ${id}`}
+      />
+      {/*
+      <ScatterChart
+        values={best}
+        color={'#77dd77'}
+        title={`Best run: ${id}`}
+      />
+      <ScatterChart
+        values={worst}
+        color={'#ff6385'}
+        title={`Worst run: ${id}`}
+      />
+      <ScatterChart
+        values={average}
+        color={'#fdfd96'}
+        title={`Average run: ${id}`}
+      />
+      */}
+    </>
   )
 }
