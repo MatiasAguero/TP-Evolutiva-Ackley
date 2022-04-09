@@ -22,12 +22,6 @@ export function App() {
     <>
       <GlobalStyle />
       <ChartsManager runs={1} params={runnerParams} />
-      {/*
-      <ScatterChart values={best} color='green' title='Best fitness' id='best' />
-      <ScatterChart values={average} color='yellow' title='Average fitness' id='average' />
-      <ScatterChart values={worst} color='rgb(255, 99, 132)' title='Worst fitness' id='worst' />
-      <MultipleScatterChart best={best} average={average} worst={worst} />
-      */}
     </>
   )
 }

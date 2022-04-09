@@ -47,7 +47,7 @@ export const ScatterChart = ({ values, color, title,id }) => {
   return (
     <Scatter
       id={id}
-      style={{backgroundColor: 'white',maxWidth:'600px', maxHeight:'400px'}}
+      style={{backgroundColor: 'white', width: '100%'}}
       options={options}
       data={data}
     />
