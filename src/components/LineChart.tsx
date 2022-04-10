@@ -40,7 +40,7 @@ export const LineChart = ({ values, color, title,id }) => {
       backgroundColor: color,
       pointRadius: 0,
       borderColor: color,
-      tension: 0.3,
+      tension: 0.4,
     }],
     labels,
   }
@@ -48,7 +48,7 @@ export const LineChart = ({ values, color, title,id }) => {
   return (
     <Line
       id={id}
-      style={{backgroundColor: 'white',maxWidth:'600px', maxHeight:'400px'}}
+      style={{backgroundColor: 'white',maxWidth:'600px', maxHeight:'400px',}}
       options={options}
       data={data}
     />

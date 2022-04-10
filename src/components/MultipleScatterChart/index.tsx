@@ -11,7 +11,6 @@ import {
   Legend,
 } from 'chart.js';
 import { LineChart } from '../LineChart';
-import { ScatterChart } from '../ScatterChart';
 import { ChartWrapper } from './styles';
 ChartJS.register(CategoryScale, BarElement, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
@@ -26,14 +25,14 @@ export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScat
   const bestRef = useRef(null)
   const worstRef = useRef(null)
   const averageRef = useRef(null)
-  const { sources, setSources } = useState({
+  const [sources, setSources] = useState({
     srcBest: null,
     srcWorst: null,
     srcAverage: null,
   })
 
   useEffect(() => {
-    if (!bestRef || !worstRef || !averageRef) return
+    if (!bestRef?.current || !worstRef?.current || !averageRef?.current) return
 
     const fillSources = async () => {
       const bestElement = bestRef.current
@@ -44,19 +43,18 @@ export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScat
       const worstCanvas = await html2canvas(worstElement)
       const averageCanvas = await html2canvas(averageElement)
 
-      const data = canvas.toDataURL('image/jpeg')
-      const link = document.createElement('a')
+      const bestData = bestCanvas.toDataURL('image/jpeg')
+      const worstData = worstCanvas.toDataURL('image/jpeg')
+      const averageData = averageCanvas.toDataURL('image/jpeg')
 
-      if (typeof link.download === 'string') {
-        link.href = data
-        link.download = 'comprobante-coinpro.jpeg'
-
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-      } else {
-        window.open(data)
-      }
+      bestRef.current.style.display = "none";
+      worstRef.current.style.display = "none";
+      averageRef.current.style.display = "none";
+      setSources({
+        srcBest: bestData,
+        srcWorst: worstData,
+        srcAverage: averageData,
+      })
     }
 
     fillSources()
@@ -66,30 +64,6 @@ export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScat
   if (!best || !best.length) return null
   if (!average || !average.length) return null
   if (!worst || !best.length) return null
-
-  /*
-  const data = {
-    datasets: [{
-      label: 'BEST',
-      data: mappedBest,
-      tension: 0.3,
-      backgroundColor: 'green'
-    },
-    {
-      label: 'AVERAGE',
-      data: mappedAverage,
-      tension: 0.3,
-      backgroundColor: 'yellow'
-    },
-    {
-      label: 'WORST',
-      data: mappedWorst,
-      tension: 0.3,
-      backgroundColor: 'rgb(255, 99, 132)'
-    }],
-  }
-  */
-
 
   return (
     <>
@@ -116,6 +90,16 @@ export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScat
           title={`Average run: ${id}`}
         />
       </ChartWrapper>
+
+      {sources.srcBest && (
+        <img src={sources.srcBest} alt='best-chart' />
+      )}
+      {sources.srcWorst && (
+        <img src={sources.srcWorst} alt='worst-chart' />
+      )}
+      {sources.srcAverage && (
+        <img src={sources.srcAverage} alt='average-chart' />
+      )}
     </>
   )
 }

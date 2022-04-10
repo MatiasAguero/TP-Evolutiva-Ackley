@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const ChartWrapper = styled.div`
-  max-height: 400px;
-  max-width: 600px;
+  left: -1000px;
+  height: 300px;
+  width: 600px;
+  position: absolute;
+  top: -1000px;
 `
