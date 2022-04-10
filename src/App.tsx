@@ -9,10 +9,10 @@ import { ChartsManager } from './components/ChartsManager'
 import { useAckley } from './hooks'
 
 const runnerParams = {
-  dimensions: 1,
-  numberOfGenerations: 10000,
+  dimensions: 2,
+  numberOfGenerations: 100000,
   populationSize: 100,
-  method: ELITISM,
+  method: TOURNAMENT,
   elitismPercentage: 40,
   tournamentPercentage: 50,
 }
@@ -21,7 +21,7 @@ export function App() {
   return (
     <>
       <GlobalStyle />
-      <ChartsManager runs={1} params={runnerParams} />
+      <ChartsManager runs={3} params={runnerParams} />
     </>
   )
 }

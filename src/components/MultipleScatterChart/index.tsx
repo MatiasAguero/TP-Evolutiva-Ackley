@@ -47,9 +47,9 @@ export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScat
       const worstData = worstCanvas.toDataURL('image/jpeg')
       const averageData = averageCanvas.toDataURL('image/jpeg')
 
-      bestRef.current.style.display = "none";
-      worstRef.current.style.display = "none";
-      averageRef.current.style.display = "none";
+      bestRef.current.removeChild(bestRef.current.children[0])
+      worstRef.current.removeChild(worstRef.current.children[0])
+      averageRef.current.removeChild(averageRef.current.children[0])
       setSources({
         srcBest: bestData,
         srcWorst: worstData,
