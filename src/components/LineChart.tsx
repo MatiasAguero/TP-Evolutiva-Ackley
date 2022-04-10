@@ -24,7 +24,8 @@ const options = {
     x: {
       beginAtZero: true,
     },
-  }
+  },
+  spanGaps: false,
 };
 
 

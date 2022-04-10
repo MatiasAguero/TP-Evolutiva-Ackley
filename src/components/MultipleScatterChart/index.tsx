@@ -71,7 +71,7 @@ export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScat
         <LineChart
           values={best}
           color={'#77dd77'}
-          title={`Best run: ${id}`}
+          title={`Best: ${id}`}
         />
       </ChartWrapper>
 
@@ -79,7 +79,7 @@ export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScat
         <LineChart
           values={worst}
           color={'#ff6385'}
-          title={`Worst run: ${id}`}
+          title={`Worst: ${id}`}
         />
       </ChartWrapper>
 
@@ -87,18 +87,18 @@ export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScat
         <LineChart
           values={average}
           color={'#fdfd96'}
-          title={`Average run: ${id}`}
+          title={`Average: ${id}`}
         />
       </ChartWrapper>
 
       {sources.srcBest && (
-        <img src={sources.srcBest} alt='best-chart' />
+        <img src={sources.srcBest} alt={`best-chart-${id.split(' ').join('-')}`} />
       )}
       {sources.srcWorst && (
-        <img src={sources.srcWorst} alt='worst-chart' />
+        <img src={sources.srcWorst} alt={`worst-chart-${id.split(' ').join('-')}`} />
       )}
       {sources.srcAverage && (
-        <img src={sources.srcAverage} alt='average-chart' />
+        <img src={sources.srcAverage} alt={`average-chart-${id.split(' ').join('-')}`} />
       )}
     </>
   )

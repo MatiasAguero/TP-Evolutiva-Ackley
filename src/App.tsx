@@ -10,7 +10,7 @@ import { useAckley } from './hooks'
 
 const runnerParams = {
   dimensions: 1,
-  numberOfGenerations: 100000,
+  numberOfGenerations: 10000,
   populationSize: 100,
   method: ELITISM,
   elitismPercentage: 40,

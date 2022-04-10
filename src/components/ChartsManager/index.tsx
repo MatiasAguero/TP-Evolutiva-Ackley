@@ -37,7 +37,37 @@ export const ChartsManager = ({ runs = 1, params }: IChartManager) => {
             worst={worst2}
             average={average2}
             id='Run 2'
-      />
+          />
+        )
+      }
+      {
+        runs >= 3 && (
+          <MultipleScatterChart
+            best={best3}
+            worst={worst3}
+            average={average3}
+            id='Run 3'
+          />
+        )
+      }
+      {
+        runs >= 4 && (
+          <MultipleScatterChart
+            best={best4}
+            worst={worst4}
+            average={average4}
+            id='Run 4'
+          />
+        )
+      }
+      {
+        runs >= 5 && (
+          <MultipleScatterChart
+            best={best5}
+            worst={worst5}
+            average={average5}
+            id='Run 5'
+          />
         )
       }
     </div>
