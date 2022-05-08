@@ -20,7 +20,7 @@ export const Footer = (props: IFooterProps) => {
       props.dispatch({payload: {}, type: ACTION_CHANGE_TO_LOADING_VIEW});
 
       const runnerParams: IRunner = {
-        dimension: props.algorithmParams.dimensions,
+        dimensions: props.algorithmParams.dimensions,
         numberOfGenerations: props.algorithmParams.iterations,
         populationSize: props.algorithmParams.population,
         method: props.algorithmParams.survivalSelection,
