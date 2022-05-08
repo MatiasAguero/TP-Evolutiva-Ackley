@@ -14,5 +14,10 @@
     "outDir": "./dist",
     "strict": true ,
     "esModuleInterop": true,
-  }
+    "isolatedModules": true,
+    "moduleResolution": "node",
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
