@@ -1,7 +1,6 @@
-import { GlobalStyle } from './styles/GlobalStyle'
+import { GlobalStyle } from './styles/GlobalStyle';
 
-import { ELITISM, TOURNAMENT } from './const'
-import { FormAckley } from './components/FormAckley'
+import { ELITISM, TOURNAMENT } from './const';
 import { MainComponent } from './components/mainComponent';
 
 const runnerParams = {

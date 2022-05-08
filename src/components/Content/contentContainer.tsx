@@ -1,6 +1,6 @@
-import { Container } from "@mui/material";
-import { Action, AlgorithmParams, ResultData, AppState } from "../../types/interface";
-import { FormContent } from "./FormContent/formContentComponent";
+import { Action, AlgorithmParams, ResultData, AppState } from "../../types/interface.d";
+import { FormAckley } from "../FormAckley";
+import { Container } from "./styles";
 
 interface IContentContainerProps {
   dispatch: React.Dispatch<Action>;
@@ -20,9 +20,9 @@ export function ContentContainer(props: IContentContainerProps) {
     
 
     return (
-      <Container className="content-container" maxWidth="lg">
+      <Container>
         {props.appState == AppState.APP_STATE_FORM_VALUE &&
-          <FormContent dispatch={props.dispatch} algorithmParams={props.algorithmParams}/>
+          <FormAckley dispatch={props.dispatch} algorithmParams={props.algorithmParams}/>
         }
         {props.appState == AppState.APP_STATE_LOADING_VALUE
           //LLamar a LoadingContent

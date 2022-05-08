@@ -16,7 +16,7 @@ export function mainReducer(state: MainState, action: Action): MainState {
     case Actions.ACTION_CHANGE_TO_LOADING_VIEW:
       return {
         ...state,
-        appState: AppState.APP_STATE_DATA_VALUE
+        appState: AppState.APP_STATE_LOADING_VALUE
       };
     case Actions.ACTION_RUNS_SLIDER_CHANGE:
       return {

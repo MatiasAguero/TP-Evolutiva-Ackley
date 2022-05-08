@@ -9,6 +9,7 @@ import {
   Label,
   MethodLabel,
   Button,
+  SliderContainer,
 } from './styles'
 
 interface IFormAckleyProps {
@@ -36,37 +37,25 @@ export const FormAckley = (props: IFormAckleyProps) => {
   const _onIterationsChange = (ev: React.SyntheticEvent<HTMLInputElement>) => {
     props.dispatch({payload: parseInt(ev.currentTarget.value), type: ACTION_ITERATIONS_CHANGE});
   }
-  const _onSubmitClick = () => {
-    const runnerParams = {
-      dimension: props.algorithmParams.dimensions,
-      numberOfGenerations: props.algorithmParams.iterations,
-      populationSize: props.algorithmParams.population,
-      method: props.algorithmParams.survivalSelection,
-      elitismPercentage: props.algorithmParams.survivalSelectionBias,
-      tournamentPercentage: props.algorithmParams.survivalSelectionBias,
-    }
-    const myWorker = new Worker(
-      new URL('../../workers/main.worker.ts', import.meta.url)
-    );
-    myWorker.onmessage = ($event) => {
-      if ($event && $event.data) {
-        console.log($event.data)
-      }
-    }
-    myWorker.postMessage({ runnerParams })
-  }
+  
 
   return (
     <Container>
       <Form>
         <InputWrapper>
           <Label> Número de runs </Label>
-          <InputSlider type='range' min={1} max={5} value={props.algorithmParams.runQuantity} onChange={_onRunSliderChange}/>
+          <SliderContainer>
+            <InputSlider type='range' min={1} max={5} value={props.algorithmParams.runQuantity} onChange={_onRunSliderChange} />
+            <Label> {props.algorithmParams.runQuantity} </Label>
+          </SliderContainer>
         </InputWrapper>
 
         <InputWrapper>
           <Label> Dimensiones (valor y desviación) </Label>
-          <InputSlider type='range' min={1} max={10} value={props.algorithmParams.dimensions} onChange={_onDimensionSliderChange}/>
+          <SliderContainer>
+            <InputSlider type='range' min={1} max={10} value={props.algorithmParams.dimensions} onChange={_onDimensionSliderChange}/>
+            <Label> {props.algorithmParams.dimensions} </Label>
+          </SliderContainer>
         </InputWrapper>
 
         <InputWrapper>
@@ -118,8 +107,6 @@ export const FormAckley = (props: IFormAckleyProps) => {
           <Label> Numero de iteraciones </Label>
           <InputString type='number' value={props.algorithmParams.iterations} onChange={_onIterationsChange}/>
         </InputWrapper>
-
-      <Button  onClick={_onSubmitClick}> Submit </Button>
       </Form>
     </Container>
   )

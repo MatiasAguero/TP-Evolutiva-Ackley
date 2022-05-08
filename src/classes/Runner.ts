@@ -1,6 +1,6 @@
 import { HabitantsCluster } from "."
 
-interface IRunner {
+export interface IRunner {
   dimension: number
   numberOfGenerations: number
   populationSize: number

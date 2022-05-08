@@ -1,20 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  background-color: #121212;
-  align-items: center;
+  align-items: end;
   display: flex;
-  width: 100%;
-  height: 100%;
-`
-
-export const Form = styled.form`
-  background-color: #121212;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  height: 45px;
+  justify-content: flex-end;
   padding: 10px;
-  hight: 100%;
   width: 100%;
 `
 
@@ -22,12 +13,6 @@ export const InputWrapper = styled.div`
   margin: 0 auto;
   max-width: 40%;
   width: 100%;
-`
-
-export const SliderContainer = styled.div`
-gap: 20px;
-  display: flex;
-  flex-direction: row;
 `
 
 export const Label = styled.label`
@@ -49,7 +34,7 @@ export const MethodLabel = styled.label`
 `
 
 export const Button = styled.button`
-  background-color: LightSkyBlue;
+  background-color: #423F3E;
   color: white;
   width: 75px;
   height: 30px;
