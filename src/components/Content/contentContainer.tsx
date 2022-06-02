@@ -37,7 +37,7 @@ export function ContentContainer(props: IContentContainerProps) {
           <Spinner />
         }
         {props.appState == AppState.APP_STATE_DATA_VALUE &&
-          <ChartsManager runs={3} params={runnerParams} />
+          <ChartsManager runs={props.algorithmParams.runQuantity} params={runnerParams} />
         }
       </Container>
     );

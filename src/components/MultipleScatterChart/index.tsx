@@ -11,7 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { LineChart } from '../LineChart';
-import { ChartWrapper } from './styles';
+import { ChartImage, LibraryChartWrapper, Container } from './styles';
 ChartJS.register(CategoryScale, BarElement, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 interface IMultipleScatterChart {
@@ -66,40 +66,40 @@ export const MultipleScatterChart = ({ best, average, worst, id }: IMultipleScat
   if (!worst || !best.length) return null
 
   return (
-    <>
-      <ChartWrapper ref={bestRef}>
+    <Container>
+      <LibraryChartWrapper ref={bestRef}>
         <LineChart
           values={best}
           color={'#77dd77'}
           title={`Best: ${id}`}
         />
-      </ChartWrapper>
+      </LibraryChartWrapper>
 
-      <ChartWrapper ref={worstRef}>
+      <LibraryChartWrapper ref={worstRef}>
         <LineChart
           values={worst}
           color={'#ff6385'}
           title={`Worst: ${id}`}
         />
-      </ChartWrapper>
+      </LibraryChartWrapper>
 
-      <ChartWrapper ref={averageRef}>
+      <LibraryChartWrapper ref={averageRef}>
         <LineChart
           values={average}
           color={'#fdfd96'}
           title={`Average: ${id}`}
         />
-      </ChartWrapper>
+      </LibraryChartWrapper>
 
       {sources.srcBest && (
-        <img src={sources.srcBest} alt={`best-chart-${id.split(' ').join('-')}`} />
+        <ChartImage src={sources.srcBest} alt={`best-chart-${id.split(' ').join('-')}`} />
       )}
       {sources.srcWorst && (
-        <img src={sources.srcWorst} alt={`worst-chart-${id.split(' ').join('-')}`} />
+        <ChartImage src={sources.srcWorst} alt={`worst-chart-${id.split(' ').join('-')}`} />
       )}
       {sources.srcAverage && (
-        <img src={sources.srcAverage} alt={`average-chart-${id.split(' ').join('-')}`} />
+        <ChartImage src={sources.srcAverage} alt={`average-chart-${id.split(' ').join('-')}`} />
       )}
-    </>
+    </Container>
   )
 }

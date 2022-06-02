@@ -1,6 +1,7 @@
 import { useAckley, useNormalizer } from '../../hooks'
 import { MultipleScatterChart } from '../MultipleScatterChart'
 import { ScatterChart } from '../ScatterChart'
+import {Container} from './styles'
 
 type RunnerParams = {
   dimensions: number,
@@ -23,7 +24,7 @@ export const ChartsManager = ({ runs = 1, params }: IChartManager) => {
   const [best5, worst5, average5] = useAckley({ active: runs >= 5, runnerParams: params })
 
   return (
-    <div>
+    <Container>
       <MultipleScatterChart
         best={best1}
         worst={worst1}
@@ -70,6 +71,6 @@ export const ChartsManager = ({ runs = 1, params }: IChartManager) => {
           />
         )
       }
-    </div>
+    </Container>
   )
 }

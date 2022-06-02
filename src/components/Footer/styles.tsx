@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  align-items: end;
+  align-items: flex-end;
   display: flex;
-  height: 45px;
+  gap: 10px;
   justify-content: flex-end;
   padding: 10px;
   width: 100%;
@@ -35,9 +35,13 @@ export const MethodLabel = styled.label`
 
 export const Button = styled.button`
   background-color: #423F3E;
-  color: white;
-  width: 75px;
-  height: 30px;
   border: 1px solid;
   border-radius: 10px;
+  color: white;
+  min-height: 30px;
+  padding: 4px 6px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
