@@ -17,8 +17,32 @@ export const LibraryChartWrapper = styled.div`
   top: -1000px;
 `
 
+export const ChartAndTextWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: flex-start;
+  width: 100%;
+`
+
 export const ChartImage = styled.img`
   border: solid 2px black;
   max-width: 600px;
   width: 100%;
+`
+
+export const LoadingMessage = styled.h2`
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+`
+
+export const RunTextWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
+
+export const RunText = styled.li`
+  margin: 0;
 `
