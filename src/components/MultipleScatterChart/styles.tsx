@@ -19,10 +19,13 @@ export const LibraryChartWrapper = styled.div`
 
 export const ChartAndTextWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 30px;
   justify-content: flex-start;
   width: 100%;
+
+  @media screen and (max-width: 1024px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const ChartImage = styled.img`
