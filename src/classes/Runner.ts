@@ -35,25 +35,58 @@ export class Runner {
 
     const firstStatistics = population.getStatistics()
 
-    let listOfBest = [firstStatistics.best]
-    let listOfWorst = [firstStatistics.worst]
+    let listOfBest = [firstStatistics.best.fitness]
+    let listOfWorst = [firstStatistics.worst.fitness]
     let listOfAverage = [firstStatistics.average]
 
+    let bestHabitant = {
+      fitness: 40,
+      fields: {
+        values: [],
+        deviations: []
+      }
+    }
+    let worstHabitant = {
+      fitness: -40,
+      fields: {
+        values: [],
+        deviations: []
+      }
+    }
+
+    let averageAverage = 0
 
     for (let i = 1; i < numberOfGenerations; i++) {
       population = population.getNextGeneration(method)
 
       const { best, worst, average } = population.getStatistics()
 
-      listOfBest.push(best)
-      listOfWorst.push(worst)
+      if (best.fitness < bestHabitant.fitness) {
+        bestHabitant.fields = best.habitant
+        bestHabitant.fitness = best.fitness
+      }
+
+      if (worst.fitness > worstHabitant.fitness) {
+        worstHabitant.fields = worst.habitant
+        worstHabitant.fitness = worst.fitness
+      }
+
+      averageAverage += average
+
+      listOfBest.push(best.fitness)
+      listOfWorst.push(worst.fitness)
       listOfAverage.push(average)
     }
+
+    averageAverage = averageAverage / numberOfGenerations
 
     return {
       best: listOfBest,
       worst: listOfWorst,
-      average: listOfAverage
+      average: listOfAverage,
+      bestHabitant,
+      worstHabitant,
+      averageAverage
     }
   }
 }

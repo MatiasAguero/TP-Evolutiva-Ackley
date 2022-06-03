@@ -13,6 +13,7 @@ export function useAckley ({ active, runnerParams }) {
     );
     myWorker.onmessage = ($event) => {
       if ($event && $event.data) {
+        console.log($event.data)
         setRunResult({
           best: $event.data.best,
           worst: $event.data.worst,
