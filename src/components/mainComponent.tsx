@@ -1,5 +1,4 @@
 import { useReducer } from "react";
-import { Box } from '@mui/system';
 import { ContentContainer } from './Content/contentContainer';
 import { Footer } from './Footer/footerComponent';
 import { Header } from './Header/headerComponent';
@@ -16,7 +15,7 @@ const initialState: MainState = {
         population: 100,
         survivalSelection: SURVIVAL_SELECTION_TOURNAMENT,
         survivalSelectionBias: 10,
-        iterations: 100000
+        iterations: 10000
     },
     resultData: {}
 }
@@ -35,10 +34,3 @@ export function MainComponent() {
         </div>
     );
 }
-/*
-<ContentContainer 
-dispatch={dispatch} 
-appState={state.appState} 
-algorithmParams={state.algorithmParams} 
-resultData={state.resultData}
-/>*/

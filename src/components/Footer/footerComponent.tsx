@@ -20,7 +20,7 @@ export const Footer = (props: IFooterProps) => {
       props.dispatch({payload: {}, type: ACTION_CHANGE_TO_LOADING_VIEW});
 
       const runnerParams: IRunner = {
-        dimension: props.algorithmParams.dimensions,
+        dimensions: props.algorithmParams.dimensions,
         numberOfGenerations: props.algorithmParams.iterations,
         populationSize: props.algorithmParams.population,
         method: props.algorithmParams.survivalSelection,
@@ -49,13 +49,13 @@ export const Footer = (props: IFooterProps) => {
     return (
       <Container>
           {props.appState !== AppState.APP_STATE_DATA_VALUE &&
-            <Button  onClick={_onSubmitClick} disabled={props.appState === AppState.APP_STATE_LOADING_VALUE}> Submit </Button>
+            <Button onClick={_onSubmitClick} disabled={props.appState === AppState.APP_STATE_LOADING_VALUE}> Ejecutar </Button>
           }
           {props.appState === AppState.APP_STATE_DATA_VALUE &&
-            <Button  onClick={_onBackClick}> Back </Button>
+            <Button onClick={_onBackClick}> Volver </Button>
           }
           {props.appState === AppState.APP_STATE_DATA_VALUE &&
-            <Button  onClick={_onSaveClick}> Save </Button>
+            <Button onClick={_onSaveClick}> Ejecutar nuevamente </Button>
           }
       </Container>
     );
