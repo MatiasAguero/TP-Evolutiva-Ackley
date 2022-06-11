@@ -118,7 +118,7 @@ export class Runner {
     }
 
     bestHabitant.average.fitness = acumBest / numberOfGenerations
-    worstHabitant.average.fitness = acumBest / numberOfGenerations
+    worstHabitant.average.fitness = acumWorst / numberOfGenerations
 
     averageAverage = averageAverage / numberOfGenerations
 
