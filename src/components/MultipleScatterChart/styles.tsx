@@ -1,13 +1,21 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Container = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 20px;
-  width: 100%;
-`
+export const Container = styled.section(
+  ({ mustShow }) => css`
+    display: flex;
+    flex-wrap: wrap;
+    gap: ${mustShow ? '20px' : 0};
+    height: ${mustShow ? '100%' : '0'};
+    justify-content: center;
+    opacity: ${mustShow ? 1 : 0};
+    padding: ${mustShow ? '20px' : 0};
+    width: 100%;
+
+    & * {
+      height: ${mustShow ? 'inherit' : '0'};
+    }
+  `
+)
 
 export const LibraryChartWrapper = styled.div`
   left: -1000px;
@@ -48,4 +56,27 @@ export const RunTextWrapper = styled.ul`
 
 export const RunText = styled.li`
   margin: 0;
+`
+
+export const TitleContainer = styled.header`
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+`
+
+export const Title = styled.h1`
+
+`
+
+export const DownloadButton = styled.button`
+  background-color: #423F3E;
+  border: 1px solid;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.2rem;
+  min-height: 30px;
+  padding: 4px 6px;
 `

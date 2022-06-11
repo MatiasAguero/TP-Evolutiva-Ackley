@@ -43,9 +43,6 @@ export const Footer = (props: IFooterProps) => {
       props.dispatch({payload: {}, type: ACTION_CHANGE_TO_FORM_VIEW});
     }
 
-    const _onSaveClick = () => {
-    }
-
     return (
       <Container>
           {props.appState !== AppState.APP_STATE_DATA_VALUE &&
@@ -53,9 +50,6 @@ export const Footer = (props: IFooterProps) => {
           }
           {props.appState === AppState.APP_STATE_DATA_VALUE &&
             <Button onClick={_onBackClick}> Volver </Button>
-          }
-          {props.appState === AppState.APP_STATE_DATA_VALUE &&
-            <Button onClick={_onSaveClick}> Ejecutar nuevamente </Button>
           }
       </Container>
     );
