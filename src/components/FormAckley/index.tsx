@@ -99,7 +99,10 @@ export const FormAckley = (props: IFormAckleyProps) => {
         {props.algorithmParams.survivalSelection === SURVIVAL_SELECTION_ELITISM && (
           <InputWrapper>
             <Label> Porcentage de elitismo </Label>
-            <InputSlider type='range' min={0} max={100} value={props.algorithmParams.survivalSelectionBias} onChange={_onSurvivalMethodBiasChange}/>
+            <SliderContainer>
+              <InputSlider type='range' min={0} max={100} value={props.algorithmParams.survivalSelectionBias} onChange={_onSurvivalMethodBiasChange}/>
+              <Label> {props.algorithmParams.survivalSelectionBias+"%"} </Label>
+            </SliderContainer>
           </InputWrapper>
         )}
 

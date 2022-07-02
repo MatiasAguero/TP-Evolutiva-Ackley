@@ -1,5 +1,6 @@
 import { IRunner } from "../../classes";
 import { Action, AlgorithmParams, AppState } from "../../types/interface.d";
+import { FileDialog } from "../FileDialogue/fileDialogComponent";
 import { ACTION_CHANGE_TO_DATA_VIEW, ACTION_CHANGE_TO_FORM_VIEW, ACTION_CHANGE_TO_LOADING_VIEW } from "../mainComponentActions";
 import { Button, Container } from "./styles";
 
@@ -33,7 +34,6 @@ export const Footer = (props: IFooterProps) => {
       myWorker.onmessage = ($event) => {
         if ($event && $event.data) {
           props.dispatch({payload: {}, type: ACTION_CHANGE_TO_DATA_VIEW});
-          console.log($event.data)
         }
       }
       myWorker.postMessage({ runnerParams });
@@ -43,13 +43,37 @@ export const Footer = (props: IFooterProps) => {
       props.dispatch({payload: {}, type: ACTION_CHANGE_TO_FORM_VIEW});
     }
 
+    const _onDownloadConfig = () => {
+      var FileSaver = require('file-saver');
+      var blob = new Blob([
+        `Runs: ${props.algorithmParams.runQuantity}`,
+        '\n',
+        `Dimensions: ${props.algorithmParams.dimensions}`,
+        '\n',
+        `Population: ${props.algorithmParams.population}`,
+        '\n',
+        `SurvivalSelection: ${props.algorithmParams.survivalSelection}`,
+        '\n',
+        `SurvivalSelectionBias: ${props.algorithmParams.survivalSelectionBias}`,
+        '\n',
+        `Iterations: ${props.algorithmParams.iterations}`,
+      ], {type: "text/plain;charset=utf-8"});
+      FileSaver.saveAs(blob, `algorithmParams.cfg`);
+    }    
+
     return (
       <Container>
+          {props.appState === AppState.APP_STATE_FORM_VALUE &&
+            <FileDialog dispatch={props.dispatch}></FileDialog>
+          }
           {props.appState !== AppState.APP_STATE_DATA_VALUE &&
             <Button onClick={_onSubmitClick} disabled={props.appState === AppState.APP_STATE_LOADING_VALUE}> Ejecutar </Button>
           }
           {props.appState === AppState.APP_STATE_DATA_VALUE &&
             <Button onClick={_onBackClick}> Volver </Button>
+          }
+          {props.appState === AppState.APP_STATE_DATA_VALUE &&
+            <Button onClick={_onDownloadConfig}> Guardar Config </Button>
           }
       </Container>
     );

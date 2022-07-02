@@ -7,3 +7,4 @@ export const ACTION_POPULATION_CHANGE = "populationChange";
 export const ACTION_SURVIVAL_SELECTION_METHOD_CHANGE = "survivalSelectionMethodChange";
 export const ACTION_SURVIVAL_SELECTION_BIAS_CHANGE = "survivalSelectionBiasChange";
 export const ACTION_ITERATIONS_CHANGE = "iterationsChange";
+export const ACTION_SET_PARAMS_FROM_FILE = "setAlgorithmParamsFromFile";

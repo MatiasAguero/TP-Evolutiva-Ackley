@@ -66,6 +66,11 @@ export function mainReducer(state: MainState, action: Action): MainState {
           iterations: action.payload,
         }
       };    
+    case Actions.ACTION_SET_PARAMS_FROM_FILE:
+      return {
+        ...state,
+        algorithmParams: action.payload
+      };    
     default:
       throw new Error();
   }
