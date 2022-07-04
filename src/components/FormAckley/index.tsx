@@ -92,7 +92,7 @@ export const FormAckley = (props: IFormAckleyProps) => {
         {props.algorithmParams.survivalSelection === SURVIVAL_SELECTION_TOURNAMENT && (
           <InputWrapper>
             <Label> Cantidad de victorias </Label>
-            <InputString value={props.algorithmParams.survivalSelectionBias} onChange={_onSurvivalMethodBiasChange}/>
+            <InputString type='number' value={props.algorithmParams.survivalSelectionBias} onChange={_onSurvivalMethodBiasChange}/>
           </InputWrapper>
         )}
 

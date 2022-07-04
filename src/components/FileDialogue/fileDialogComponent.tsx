@@ -67,6 +67,7 @@ export const FileDialog = (props: IFileDialogProps) => {
     const buildFileSelector = () => {
         const fileSelector = document.createElement('input');
         fileSelector.setAttribute('type', 'file');
+        fileSelector.setAttribute('accept', '.cfg');
         fileSelector.addEventListener('change', (e) => {
             showFile(e);
         });
