@@ -40,24 +40,42 @@ export class HabitantsCluster {
   }
 
   getStatistics() {
-    let statistics: {
-      best: number,
-      average: number,
-      worst: number
-    } = {
-      best: BEST_DISCERNIBLE,
+    let statistics = {
+      best: {
+        fitness: BEST_DISCERNIBLE,
+        habitant: {
+          values: [],
+          deviations: []
+        }
+      },
       average: 0,
-      worst: WORST_DISCERNIBLE
+      worst: {
+        fitness: WORST_DISCERNIBLE,
+        habitant: {
+          values: [],
+          deviations: []
+        }
+      }
     }
 
+    
+
+
     for (const habitant of this.listOfHabitants) {
-      if (habitant.getFitness() < statistics.best) {
-        statistics.best = habitant.getFitness()
+      const currentFitness = habitant.getFitness()
+
+      if (currentFitness < statistics.best.fitness) {
+        statistics.best.fitness = currentFitness
+        statistics.best.habitant.values = habitant.values
+        statistics.best.habitant.deviations = habitant.deviations
+
       }
-      if (habitant.getFitness() > statistics.worst) {
-        statistics.worst = habitant.getFitness()
+      if (currentFitness > statistics.worst.fitness) {
+        statistics.worst.fitness = currentFitness
+        statistics.worst.habitant.values = habitant.values
+        statistics.worst.habitant.deviations = habitant.deviations
       }
-      statistics.average += habitant.getFitness()
+      statistics.average += currentFitness
     }
     statistics.average /= this.listOfHabitants.length
 

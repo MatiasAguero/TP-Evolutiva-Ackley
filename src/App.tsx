@@ -1,39 +1,11 @@
-import { GlobalStyle } from './styles/GlobalStyle'
-
-import { Greetings } from './components/Greetings'
-
-import { Runner } from './classes'
-import { ELITISM, TOURNAMENT } from './const'
-
-const runnerParams = {
-  dimension: 1,
-  numberOfGenerations: 10000,
-  populationSize: 100,
-  method: TOURNAMENT,
-  elitismPercentage: 5,
-  tournamentPercentage: 10,
-}
+import { GlobalStyle } from './styles/GlobalStyle';
+import { MainComponent } from './components/mainComponent';
 
 export function App() {
-
-  /*
-  const myWorker = new Worker(
-    new URL('./workers/main.worker.ts', import.meta.url)
-  );
-  myWorker.onmessage = ($event) => {
-    if ($event && $event.data) {
-      console.log($event.data)
-    }
-  }
-  myWorker.postMessage({ runnerParams })
-  const runner = new Runner(runnerParams)
-  const res = runner.run()
-  */
-
   return (
     <>
       <GlobalStyle />
-      <Greetings />
+      <MainComponent />
     </>
   )
 }
