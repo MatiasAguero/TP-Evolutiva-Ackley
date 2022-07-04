@@ -10,15 +10,14 @@
     "make": "electron-forge make",
     "release": "electron-forge publish",
     "lint": "eslint . --ext js,ts",
-    "test": "jest"
+    "test": "jest",
+    "build:exe": "npx electron-packager ."
   },
   "keywords": [],
   "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@mui/icons-material": "^5.0.5",
-    "@mui/material": "^5.0.4",
     "chart.js": "^3.7.1",
     "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",
